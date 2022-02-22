@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 1、未被访问过的 */
+        a:link{
+            color: #333;
+            text-decoration: none;
+        }
+        /* 4、点击过 */
+        a:visited{
+            color: orange;
+        }
+        /* 3、鼠标略过 */
+        a:hover{
+            color: skyblue;
+        }
+        /* 2、被点击时 */
+        a:active{
+            color: green;
+        }
+        
+        input:focus{
+            background-color: pink;
+            color: red;
+        }
+        
+    </style>
+</head>
+<body>
+    <!-- <a href="http://www.baidu.com" target="_blank">百度一下</a> -->
+    <a href="#1" >小猪佩奇</a> 
+
+    <div>
+        <input></input>
+        <input></input>
+        <input></input>
+        
+    </div>
+</body>
+</html>
