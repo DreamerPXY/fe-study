@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .nav{
+            border-top: 3px solid #ff8500;
+            border-bottom: 1px solid #edeef0;
+            height: 41px;
+            background-color: #fcfcfc;
+            color: #4c4c4c;
+            line-height: 41px;
+        }
+        .nav a{
+            /* a为行内元素 为了设置高度 改为行内块元素 */
+            display: inline-block;
+            text-decoration: none;
+            font-size: 12px;
+            height: 41px;
+            padding: 0 20px;
+        }
+        a:hover{
+            color: #ff8500;
+            background-color: #eee;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <a href="#">新浪导航栏</a>
+        <a href="#">微博</a>
+        <a href="#">三个字</a>
+        <a href="#">移动客户端</a>
+        <a href="#">新浪首页</a>
+        <a href="#">手机新浪页</a>
+    </div>
+</body>
+</html>
