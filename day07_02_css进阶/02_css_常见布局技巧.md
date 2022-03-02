@@ -12,3 +12,10 @@
 
 # 三、巧用行内块元素
 
+![image-20220301210254456](/Users/pengxy/Library/Application Support/typora-user-images/image-20220301210254456.png)
+
+## 四、CSS初始化
+
+以京东代码为例：
+
+`*{margin:0;padding:0}em,i{font-style:normal}li{list-style:none}img{border:0;vertical-align:middle}button{cursor:pointer}a{color:#666;text-decoration:none}a:hover{color:#c81623}button,input{font-family:Microsoft YaHei,Heiti SC,tahoma,arial,Hiragino Sans GB,"\5B8B\4F53",sans-serif}body{-webkit-font-smoothing:antialiased;background-color:#fff;font:12px/1.5 Microsoft YaHei,Heiti SC,tahoma,arial,Hiragino Sans GB,"\5B8B\4F53",sans-serif;color:#666}.hide,.none{display:none}.clearfix:after{visibility:hidden;clear:both;display:block;content:".";height:0}.clearfix{*zoom:1}`

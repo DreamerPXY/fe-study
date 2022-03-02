@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        input[value]{
+            color: pink;
+        }
+        input[type="password"]{
+            color: skyblue;
+        }
+        input::placeholder{
+            color: gray;
+        }
+        ul li:first-child{
+            background-color: rebeccapurple;
+        }
+        ul li:last-child{
+            background-color: blue;
+        }
+        ul li:nth-child(2){
+            background-color: yellow;
+        }
+        ol li:nth-child(even){
+            background-color: #ccc;
+        }
+        ol li:nth-child(odd){
+            background-color: gray;
+        }
+        /* #list>li:nth-child(2n){
+            background-color: ccc;
+        }
+        #list>li:nth-child(2n+1){
+            background-color: gray;
+        } */
+        section div:nth-child(1){
+            background-color: #ccc;
+        }
+
+        section div:nth-of-type(1){
+            background-color: blue;
+        }
+
+    </style>
+</head>
+<body>
+    <input type="text" name="" id="" value="请输入名称">
+    <input type="text" name="" id="">
+    <input type="password" name="" id="" value="请输入密码">
+    <input type="password" name="" id="" placeholder="请输入密码">
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+        <li>7</li>
+        <li>8</li>
+    </ul>
+
+    <ol>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+        <li>7</li>
+        <li>8</li>
+    </ol>
+
+    <!-- <ul id="list">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+        <li>7</li>
+        <li>8</li>
+    </ul> -->
+    <section>
+        <p>光头强</p>
+        <div>熊大</div>
+        <div>熊二</div>
+    </section>
+</body>
+</html>
