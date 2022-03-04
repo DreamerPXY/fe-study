@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+        .bg{
+            position: relative;
+            width: 100%;
+            height: 336px;
+            background: url("images/bg1.png"),no-repeat;
+            animation: bjmove 15s linear 5s infinite ;
+
+        }
+        .xiongda{
+            position: absolute;
+            top:220px;
+            left: 0px;
+            width: 200px;
+            height: 100px;
+            background: url("images/bear.png"),no-repeat;
+            /* 可以给多个动画 逗号分割 */
+            animation: bear 1s steps(8) infinite ,move 5s linear forwards;
+        }
+
+        @keyframes bear {
+            0%{
+                background-position:0px 0px;
+            }
+            100%{
+                background-position: -1600px 0px;
+            }
+        }
+        @keyframes move {
+            0%{
+                left: 0px;
+            }
+            100%{
+                left: 50%;
+                /* 确保熊大跑到了页面中间 */
+                transform: translateX(-50%);
+            }
+        }
+        @keyframes bjmove {
+            0%{
+                background-position:0px 0px;
+            }
+            100%{
+                /* 熊大跑到中间以后开始移动 */
+                background-position: -1200px 0px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg">
+        <div class="xiongda"></div>
+    </div>
+</body>
+</html>
