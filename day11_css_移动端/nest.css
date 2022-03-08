@@ -1,0 +1,19 @@
+body div {
+  height: 100px;
+  width: 100px;
+  background-color: pink;
+}
+body div a {
+  color: red;
+}
+body div a:hover {
+  color: blue;
+}
+.nav .search {
+  height: 30px;
+  width: 30px;
+  background-color: purple;
+}
+.nav .search::before {
+  content: '123';
+}
