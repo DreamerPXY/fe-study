@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/vue.min.js"></script>
+    <style>
+        #app img{
+            display: none;
+        }
+        #app .act{
+            display: block;
+        }
+        span{
+            margin: 0 10px;
+            cursor: pointer;
+        }
+        .spanAct{
+            background-color: gray;
+            color: yellow;
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div ><span :key="index" @click="handle(index)" v-for="(item,index) in nameList" :class='currentIndex==index?"spanAct":""'>{{item}}</span></div>
+        <div :key="index" v-for="(item,index) in imgList"><img :src="item" alt="" :class='currentIndex==index?"act":""'></div>
+    </div>
+</body>
+    <script>
+        new Vue({
+            el:"#app",
+            data:{
+                currentIndex:0,
+                imgList:["imgs/apple.jpeg","imgs/banana.jpeg","imgs/orange.jpeg"],
+                nameList:["苹果","香蕉","橘子"]
+            },
+            methods:{
+                handle:function(index){
+                    this.currentIndex = index;
+                }
+            }
+        });
+
+    </script>
+</html>

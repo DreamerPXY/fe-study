@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="timer">2022-03-10</div>
+    <div class="box">box1</div>
+    <div class="box">box2</div>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+    </ul>
+    <ul id='nav'>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+    </ul>
+    <script>
+       var timer =  document.getElementById("timer");
+       console.log(timer);
+       console.dir(timer);
+       var list = document.getElementsByTagName('li');
+       console.log(list);
+       console.dir(list);
+       console.log(list[0]);
+       for (let index = 0; index < list.length; index++) {
+           const element = list[index];
+           console.log(element);
+       }
+
+       var nav = document.getElementById('nav');
+       var li = nav.getElementsByTagName('li');
+       console.log(li);
+    // h5新增的
+       var boxlist = document.getElementsByClassName('box');
+       var box1 = document.querySelector('.box');
+       var boxs = document.querySelectorAll('.box');
+       var nav = document.querySelectorAll('#nav');
+
+    //    获取body标签和html标签
+    var bodyELm = document.body;
+    var htmlElm = document.documentElement;
+    console.log(bodyELm);
+    console.log(htmlElm);
+    </script>
+</body>
+</html>

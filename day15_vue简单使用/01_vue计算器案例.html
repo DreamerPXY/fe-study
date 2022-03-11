@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        
+        <input type="text" name="" id="" v-text="a" v-model="a">
+        <input type="text" name="" id="" v-text="b" v-model="b">
+        <span>计算结果：<span v-text="result"></span></span>
+        <!-- <button type="submit" value="提交" v-on:click='handle' ></button> -->
+        <input type="submit" value="提交" v-on:click='handle'>
+
+        <div>
+            <a v-bind:href="url">百度</a>
+            <button v-on:click="change">切换</button>
+        </div>
+    </div>
+    
+    
+    </div>
+    
+</body>
+    <script>
+        var vm = new Vue({
+            el:"#app",
+            data:{
+                a : '',
+                b : '',
+                result:'',
+                url:'http://www.baidu.com'
+            },
+            methods:{
+                handle : function(){
+                    console.log(111);
+                    this.result = parseInt(this.a) + parseInt(this.b);
+                },
+                change:function(){
+                    this.url = "http://www.jd.com";
+                }
+            }
+        });
+    </script>
+
+</html>
