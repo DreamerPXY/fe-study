@@ -1,12 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="js/vue.min.js"></script>
 </head>
+    <div id="app">
+        <button-counter></button-counter>
+        <button-counter2></button-counter2>
+        <button-counter3></button-counter3>
+    </div>
 <body>
-    
+
 </body>
+<script>
+    //注册组件 方式一
+    Vue.component('button-counter', {
+        data: function () {
+            return {
+                count: 0
+            }
+        },
+        template: '<button @click="count++">点击了{{count}}次</button>',
+    },
+    
+    );
+    //注册组件 方式二
+    Vue.component('button-counter2', {
+        data: function () {
+            return {
+                count: 0
+            }
+        },
+        template: '<button @click="addCounter">点击了{{count}}次</button>',
+        methods: {
+            addCounter() {
+                this.count+=2;
+            },
+        },
+    },
+    );
+     //注册组件 方式三 模板字符串
+     Vue.component('button-counter3', {
+        data: function () {
+            return {
+                count: 0
+            }
+        },
+        template: `
+        <div>
+            <button @click="addCounter">点击了{{count}}次</button>
+        </div>
+        `,
+        methods: {
+            addCounter() {
+                this.count+=2;
+            },
+        },
+    },
+    );
+    new Vue({
+        el:'#app'
+    });
+</script>
+
 </html>

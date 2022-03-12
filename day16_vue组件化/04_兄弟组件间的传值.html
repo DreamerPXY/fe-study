@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/vue.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <button @click='destroy'>销毁事件</button>
+        <test-tom></test-tom>
+        <test-jerry></test-jerry>
+    </div>
+
+</body>
+
+<script>
+    //通过中间事件通知消息
+    var hub = new Vue();
+    const testTom = Vue.component('test-tom', {
+        data: function () {
+            return {
+                num: 0
+            }
+        },
+        template: `<div>
+            <div>tom:{{num}}</div>
+            <button @click='handle'>点击</button>
+            </div>
+            `,
+        methods: {
+            handle: function () {
+                //触发兄弟事件
+                hub.$emit('tom-event',2);
+            }
+        },
+        mounted() {
+            hub.$on('jerry-event',(val)=>{
+                this.num +=val;
+            })
+        },
+        
+    });
+    const testJerry = Vue.component('test-jerry', {
+        data: function () {
+            return {
+                num: 0
+            }
+        },
+        template: `<div>
+            <div>jerry:{{num}}</div>
+            <button @click='handle'>点击</button>
+            </div>
+            `,
+        methods: {
+            handle: function () {
+                //触发兄弟事件
+                hub.$emit('jerry-event',1);
+            }
+        },
+        mounted() {
+            hub.$on('tom-event',(val)=>{
+                this.num +=val;
+            })
+        },
+        
+    });
+    new Vue({
+        el: "#app",
+        data: {},
+        methods: {
+            destroy:function(){
+                console.log("销毁事件");
+                hub.$off('tom-event');
+                hub.$off('jerry-event');
+            }
+        }
+    })
+</script>
+
+</html>

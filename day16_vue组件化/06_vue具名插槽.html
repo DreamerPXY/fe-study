@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <body-content>
+            <p slot='header'>头部内容</p>
+            <p>主要内容1</p>
+            <p>主要内容2</p>
+            <p slot='footer'>底部内容</p>
+        </body-content>
+
+        <body-content>
+            <template slot='header'>
+                <p>头部内容1</p>
+                <p>头部内容2</p>
+            </template>
+            <p>主要内容3</p>
+            <p>主要内容4</p>
+            <template slot='footer'>
+                <p>底部内容1</p>
+                <p>底部内容2</p>
+            </template>
+        </body-content>
+
+    </div>
+</body>
+<script src="js/vue.min.js"></script>
+<script>
+    const alertBox = Vue.component('body-content',
+        {
+            template: `
+        <div>
+            <header>
+                <slot name='header'></slot>
+            </header>
+            <main>
+                <slot></slot>
+            </main>
+            <footer>
+                <slot name='footer'></slot>
+            </footer>
+        </div>`,
+        });
+    new Vue({
+        el: '#app'
+    });
+</script>
+
+</html>

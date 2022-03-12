@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <span v-bind:style='{fontSize:fontSize + "px"}'>{{msg}}</span>
+        <menu-item @enlarge-text='handle($event)'></menu-item>
+    </div>
+</body>
+    <script>
+        //子组件向父组件传值 带参数版
+        const Feature = Vue.component('menu-item',{
+            template: `<div>
+                <button @click='$emit("enlarge-text",5)'>扩大父组件中字体大小</button>
+                <button @click='$emit("enlarge-text",15)'>扩大父组件中字体大小</button>
+                </div>`,
+        });
+
+        var vm = new Vue({
+            el:'#app',
+            data:{
+                msg:"测试",
+                fontSize:10
+            },
+            methods: {
+                handle:function(val) {
+                    console.log(val);
+                    this.fontSize+=val;
+                },
+            },
+        });
+    </script>
+</html>

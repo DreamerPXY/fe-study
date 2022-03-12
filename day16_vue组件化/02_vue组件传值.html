@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <div id="app">
+        <first-child :pobj='pobj' :parray='parray'></first-child>
+    </div>
+<body>
+    
+</body>
+<script src="js/vue.min.js"></script>
+<script>
+    //props 官方不建议从子组件传值到父组件，传递数据原则为：单向数据流
+    const Feature = Vue.component('first-child',{
+        props:['pobj','parray'],
+        data:function(){
+            return{
+                child : '123'
+            }
+        },
+        template: `
+        <div>
+            <div>{{child}}</div>
+            <div>
+                <ul>
+                    <li :key="index" v-for="(item,index) in parray">{{item}}</li>
+                </ul>
+                <button @click='parray.push("5")'>点击</button>
+            </div>
+            <div>{{pobj.name + "----" + pobj.age}}</div>
+        </div>
+        `,
+    });
+    var vm = new Vue({
+        el:'#app',
+        data:{
+            pobj:{
+                name:'xx',
+                age:18
+            },
+            parray : [1,2,3,4]
+        },
+    });
+</script>
+</html>
