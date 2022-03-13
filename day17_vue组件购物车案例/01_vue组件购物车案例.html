@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+       
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        a{
+            text-decoration: none;
+        }
+        button{
+            border: none;
+        }
+        input{
+            border:none;
+        }
+        li{
+            list-style: none;
+        }
+        .container{
+            width: 500px;
+            margin: 0 auto;
+        }
+        .cart-title h1{
+            background-color: rgb(49, 93, 129);
+            text-align: center;
+            margin: 10px 0px;
+        }
+        .cart-content li{
+            margin-bottom: 5px;
+        }
+        .goods-content {
+            height: 150px;
+            text-align: center; 
+        }
+        .goods-content img{
+           width: 150px;
+           float: left;
+        }
+        .goods-content .goods-handle{
+            margin-left: 55px;
+            margin-top: 63px;
+            width: 200px;
+            float: left;
+        }
+        .goods-handle input{
+            float: left;
+            height: 60px;
+            width: 100px;
+            background-color: #ccc;
+            text-align: center;
+        }
+        .goods-handle button{
+            float: left;
+            height: 60px;
+            width: 50px;
+        }
+        .goods-content a{
+            float: left;
+            text-decoration: none;
+            margin-left: 30px;
+            margin-top: 56px;
+            font-size: 50px;
+            color: red;
+        }
+        .cart-total{
+            height: 80px;
+            font-size: 40px;
+            background-color: yellow;
+        }
+        .cart-total span{
+            margin-left: 166px;
+            color: red;
+            font-weight: 700;
+            line-height: 80px;
+        }
+        .cart-total a{
+            margin-left: 23px;
+            height: 60px;
+            padding: 5px;
+            text-align: center;
+            line-height: 80px;
+            color: #000;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="container">
+            <div class="cart">
+                <div class="cart-title">
+                    <h1>我的商品</h1>
+                </div>
+                <div class="cart-content">
+                    <ul>
+                        <li :key='item.id' v-for='item in goodsList'>
+                            <div class="goods-content">
+                                <img :src="item.imgsrc">
+                                <div class="goods-handle"> <button @click='add(item.id)'>+</button><input type="text" :value="item.count"/><button @click='reduce(item.id)'>-</button></div>
+                                <a href="#" @click.prevent='del'>X</a>
+                            </div>
+                        </li>
+                       
+                       
+                    </ul>
+                </div>
+                <div class="cart-total">
+                    <span>总价：123</span><a href="#" @click.prevent='count'>结算</a>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+</body>
+<script src="js/vue.min.js"></script>
+<script>
+    new Vue({
+        el:'#app',
+        data:{
+            goodsList:[
+                {
+                    id:0,
+                    imgsrc:'imgs/goods1.jpg',
+                    count:1
+                },
+                {
+                    id:1,
+                    imgsrc:'imgs/goods2.jpg',
+                    count:1
+                },
+                {
+                    id:2,
+                    imgsrc:'imgs/goods3.jpg',
+                    count:1
+                },
+                {
+                    id:3,
+                    imgsrc:'imgs/goods4.jpg',
+                    count:1
+                },
+                {
+                    id:4,
+                    imgsrc:'imgs/goods5.jpg',
+                    count:1
+                },
+            ]
+        },
+        methods: {
+            add:function(id){
+                console.log(id);
+                var index = this.goodsList.findIndex(function(item){
+                    return item.id == id;
+                });
+                var goods = this.goodsList[index];
+                goods.count+=1;
+            },
+            reduce:function(id){
+                console.log(id);
+                var index = this.goodsList.findIndex(function(item){
+                    return item.id == id;
+                });
+                var goods = this.goodsList[index];
+                if(goods.count == 1){
+                    this.goodsList.splice(index,1);
+                }
+                if(goods.count-1 <0){
+                    alert('数量不能再减了')
+                }else{
+                    goods.count -=1;
+                }
+            },
+            del:function() {
+                
+            },
+            count:function(){
+
+            }
+        },
+    })
+</script>
+</html>
