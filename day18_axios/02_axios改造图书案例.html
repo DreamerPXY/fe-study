@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        table {
+            border: none;
+            border-collapse: collapse;
+        }
+
+        #app {
+            width: 450px;
+            margin: 0 auto;
+        }
+
+        .grade,
+        table {
+            width: 450px;
+        }
+
+        h1 {
+            text-align: center;
+            padding: 10px;
+        }
+
+        .book {
+            background-color: #ccc;
+        }
+
+        th {
+            background-color: #ccc;
+        }
+
+        th,
+        td {
+            border: 1px solid gray;
+        }
+
+        input {
+            width: 100px;
+            border: 0;
+            /*去除蓝色边框*/
+            outline: none;
+        }
+
+        td {
+            background-color: aliceblue;
+            padding: 10px;
+        }
+
+        a,
+        span {
+            text-decoration: none;
+            color: #ccc;
+        }
+
+        a:hover {
+            color: blueviolet;
+        }
+
+        button {
+            text-align: center;
+            width: 50px;
+        }
+    </style>
+    <script src="js/vue.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div class="grade">
+            <h1>图书管理</h1>
+            <div class="book">
+                <div>
+                    <label for="id">
+                        编号：
+                    </label>
+                    <input type="text" name="" id="" v-model='number'>
+                    <label for="name">
+                        名称：
+                    </label>
+                    <input type="text" name="" id="" v-model='name'>
+                    <button @click='add'>提交</button>
+                </div>
+            </div>
+        </div>
+        <table>
+            <tr>
+                <th>
+                    编号
+                </th>
+                <th>
+                    名称
+                </th>
+                <th>
+                    时间
+                </th>
+                <th>
+                    操作
+                </th>
+            </tr>
+            <tr :key="item.id" v-for="(item,index) in bookNameList">
+                <td>{{item.id}}</td>
+                <td>{{item.name}}</td>
+                <td>{{formateDate('yyyy-MM-dd hh:mm:ss',item.date)}}</td>
+                <td><a href="#" @click.prevent="del(index)">删除</a>
+                    <span>|</span>
+                    <a href="#" @click.prevent="modify(index)">修改</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+</body>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            name: '',
+            number: '',
+            bookNameList: [
+
+            ]
+        },
+        methods: {
+            del: function (index) {
+                this.bookNameList.splice(index, 1);
+            },
+            modify: function (index) {
+                console.log(index);
+                var book = this.bookNameList[index];
+                this.number = book.id;
+                this.name = book.name;
+            },
+            add: function () {
+                var book = this.bookNameList[this.number];
+                if (book == undefined) {
+                    this.bookNameList.push({
+                        id: this.number,
+                        name: this.name,
+                        date: new Date()
+                    });
+                } else {
+                    this.bookNameList.splice(this.number, 1, {
+                        id: this.number,
+                        name: this.name,
+                        date: new Date()
+                    });
+                }
+
+                this.name = '';
+                this.number = '';
+            },
+            formateDate: function (fmt, date) {
+                var o = {
+                    "M+": date.getMonth() + 1,     //月份 
+                    "d+": date.getDate(),     //日 
+                    "h+": date.getHours(),     //小时 
+                    "m+": date.getMinutes(),     //分 
+                    "s+": date.getSeconds(),     //秒 
+                    "q+": Math.floor((date.getMonth() + 3) / 3), //季度 
+                    "S": date.getMilliseconds()    //毫秒 
+                };
+                if (/(y+)/.test(fmt))
+                    fmt = fmt.replace(RegExp.$1, (date.getFullYear() + "").substr(4 - RegExp.$1.length));
+                for (var k in o)
+                    if (new RegExp("(" + k + ")").test(fmt))
+                        fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+                return fmt;
+            }
+        },
+        mounted: function () {
+            var data = [{
+                id: 0,
+                name: "Java讲义",
+                date: new Date()
+            },
+            {
+                id: 1,
+                name: "Java讲义",
+                date: new Date()
+            },
+            {
+                id: 2,
+                name: "Java讲义",
+                date: new Date()
+            },
+            {
+                id: 3,
+                name: "Java讲义",
+                date: new Date()
+            }];
+            this.bookNameList = data;
+        }
+    });
+
+</script>
+
+</html>
