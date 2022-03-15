@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=cp, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/js/vue.min.js"></script>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        li{
+            list-style: none;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div>
+           <ul>
+            <li><a href="#/shouye">首页</a></li>
+            <li><a href="#/caijing">财经</a></li>
+            <li><a href="#/xinwen">新闻</a></li>
+            <li><a href="#/yule">娱乐</a></li>
+        </ul>
+        </div>
+        <div>
+            <component :is='currentName'></component>
+        </div>
+
+    </div>
+
+    <script>
+        var shouyeC = {
+            template: '<h1>首页</h1>',
+        }
+        var caijingC = {
+            template: '<h1>财经</h1>',
+        }
+        var xinwenC = {
+            template: '<h1>新闻</h1>',
+        }
+        var yuleC = {
+            template: '<h1>娱乐</h1>',
+        }
+        var vm = new Vue({
+            el:'#app',
+            data:{
+                currentName : 'shouyeC'
+            },
+            //注册成为私有组件
+            components: { 
+                shouyeC,caijingC,xinwenC,yuleC
+             },
+        })
+
+        window.onhashchange = function(){
+            console.log(location.hash);
+            switch(location.hash.slice(1)){
+                case '/shouye':
+                    vm.currentName = 'shouyeC';
+                    break;
+                    case '/caijing':
+                    vm.currentName = 'caijingC';
+                    break;
+                    case '/xinwen':
+                    vm.currentName = 'xinwenC';
+                    break;
+                    case '/yule':
+                    vm.currentName = 'yuleC';
+                    break;
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- 导入 vue 文件 -->
+    <script src="./lib/vue.min.js"></script>
+    <script src="./lib/vue-router.js"></script>
+</head>
+
+<body>
+    <!-- 被 vm 实例所控制的区域 -->
+    <div id="app">
+        <router-link to="/user/1">User1</router-link>
+        <router-link to="/user/2">User2</router-link>
+        <router-link :to="{name:'user',params:{id:3}}">User3</router-link>
+        <router-link to="/register">Register</router-link>
+        <!-- 路由占位符 -->
+        <router-view></router-view>
+    </div>
+
+    <script>
+        const User = {
+            props: ['id','uname','age'],
+            template: `<div>
+                <h1>User组件----用户的id为{{id}}---姓名:{{uname}}----年龄:{{age}}</h1>
+                <button @click="goRegister">跳转到注册页面</button>
+                </div>`,
+                methods:{
+                    goRegister:function(){
+                        this.$router.push('/register');
+                    }
+                }
+        }
+        
+        const Register = {
+            template: `<div>
+                <h1>Register组件</h1>
+                <button @click="goBack">后退</button>
+                </div>`,
+                methods:{
+                    goBack:function(){
+                        this.$router.go(-1);
+                    }
+                }
+        }
+        //创建路由对象
+        const router = new VueRouter({
+            routes: [
+                 {
+                    name:'user',
+                    path: '/user/:id', component: User, props:route=>({
+                        uname:'zs',age:18,id:route.params.id
+                    })
+                },
+                {
+                    path: '/register', component: Register
+                }
+            ]
+        });
+        // 创建 vm 实例对象
+        const vm = new Vue({
+            // 指定控制的区域
+            el: '#app',
+            data: {
+
+            },
+            methods: {
+
+            },
+            router: router
+        });
+    </script>
+</body>
+
+</html>
